@@ -3,7 +3,7 @@ from google.cloud import texttospeech
 client = texttospeech.TextToSpeechClient()
 
 
-def synthesize_text(text):
+def synthesize_text(text, audio_output_path):
     """Synthesizes speech from the input string of text."""
 
     input_text = texttospeech.SynthesisInput(text=text)
@@ -25,9 +25,11 @@ def synthesize_text(text):
     )
 
     # The response's audio_content is binary.
-    with open("output.mp3", "wb") as out:
+    with open(audio_output_path, "wb") as out:
         out.write(response.audio_content)
         print('Audio content written to file "output.mp3"')
 
 
-synthesize_text(text="Hello how are you?")
+audio_output_path = "/Users/vsatpathy/Desktop/output.mp3"
+sample_text = "Hola, mi nombre es Mark, mi número de identificación de caso es 974-200-2000. En realidad, quería saber cuál es el estado de mi solicitud de Medicaid. Puede devolverme la llamada a mi número de teléfono. gracias"
+synthesize_text(text=sample_text, audio_output_path=audio_output_path)

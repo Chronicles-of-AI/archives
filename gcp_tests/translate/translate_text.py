@@ -23,4 +23,5 @@ def translate_text(target, text):
     print(u"Detected source language: {}".format(result["detectedSourceLanguage"]))
 
 
-translate_text(target="es", text="Hello how are you?")
+sample_text = "hey hi my name is Mark my case ID is 974-200-2000 actually wanted to know what is the status of my Medicaid application you can call me back on my phone number my number is 900-377-9537 or 5 p.m. would be good thank you"
+translate_text(target="es", text=sample_text)

@@ -13,7 +13,7 @@ def transcribe_file(speech_file):
     audio = speech.RecognitionAudio(content=content)
     config = speech.RecognitionConfig(
         encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
-        sample_rate_hertz=16000,
+        sample_rate_hertz=8000,
         language_code="en-US",
     )
 
@@ -32,7 +32,7 @@ def transcribe_gcs(gcs_uri):
     audio = speech.RecognitionAudio(uri=gcs_uri)
     config = speech.RecognitionConfig(
         encoding=speech.RecognitionConfig.AudioEncoding.FLAC,
-        sample_rate_hertz=16000,
+        sample_rate_hertz=8000,
         language_code="en-US",
     )
 
@@ -45,7 +45,5 @@ def transcribe_gcs(gcs_uri):
         print(u"Transcript: {}".format(result.alternatives[0].transcript))
 
 
-audio_path = (
-    "/Users/vaibhavsatpathy/Documents/pocs/dataset/audio_dataset/short_audio.wav"
-)
+audio_path = "/Users/vsatpathy/Documents/Brain Dump/dhiti/short_audio.wav"
 transcribe_file(speech_file=audio_path)
