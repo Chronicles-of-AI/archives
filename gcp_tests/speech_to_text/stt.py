@@ -13,8 +13,8 @@ def transcribe_file(speech_file):
     audio = speech.RecognitionAudio(content=content)
     config = speech.RecognitionConfig(
         encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
-        sample_rate_hertz=8000,
         language_code="en-US",
+        enable_automatic_punctuation=True,
     )
 
     response = client.recognize(config=config, audio=audio)
@@ -24,6 +24,8 @@ def transcribe_file(speech_file):
     for result in response.results:
         # The first alternative is the most likely one for this portion.
         print(u"Transcript: {}".format(result.alternatives[0].transcript))
+
+    return {"transcript": result.alternatives[0].transcript}
 
 
 def transcribe_gcs(gcs_uri):
@@ -46,4 +48,4 @@ def transcribe_gcs(gcs_uri):
 
 
 audio_path = "/Users/vsatpathy/Documents/Brain Dump/dhiti/short_audio.wav"
-transcribe_file(speech_file=audio_path)
+response = transcribe_file(speech_file=audio_path)
