@@ -33,9 +33,9 @@ def transcribe_gcs(gcs_uri):
 
     audio = speech.RecognitionAudio(uri=gcs_uri)
     config = speech.RecognitionConfig(
-        encoding=speech.RecognitionConfig.AudioEncoding.FLAC,
-        sample_rate_hertz=8000,
+        encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
         language_code="en-US",
+        enable_automatic_punctuation=True,
     )
 
     response = client.recognize(config=config, audio=audio)
